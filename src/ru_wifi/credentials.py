@@ -6,6 +6,7 @@ from pathlib import Path
 import configparser
 import os
 import stat
+from typing import TextIO
 
 import keyring
 from keyring.errors import KeyringError
@@ -34,7 +35,7 @@ def load_password_keyring(username: str) -> str | None:
         return None
 
 
-def _secure_open_for_write(path: Path):
+def _secure_open_for_write(path: Path) -> TextIO:
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     return os.fdopen(fd, "w", encoding="utf-8")
 

@@ -54,6 +54,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now ru-wifi.service
 ```
 
+If your `ru-wifi` binary lives outside `~/.local/bin`, update `ExecStart` in the unit file
+to the full path (for example `/usr/bin/ru-wifi`).
+
 ## Wake/sleep hook
 
 ```bash
