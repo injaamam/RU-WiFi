@@ -25,13 +25,14 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "click",
+  "keyring",
+  "requests",
 ]
 
 [project.urls]
-Documentation = "https://github.com/copilot-swe-agent[bot]/ru-wifi#readme"
-Issues = "https://github.com/copilot-swe-agent[bot]/ru-wifi/issues"
-Source = "https://github.com/copilot-swe-agent[bot]/ru-wifi"
+Documentation = "https://github.com/injaamam/RU-WiFi#readme"
+Issues = "https://github.com/injaamam/RU-WiFi/issues"
+Source = "https://github.com/injaamam/RU-WiFi"
 
 [project.scripts]
 ru-wifi = "ru_wifi.cli:ru_wifi"

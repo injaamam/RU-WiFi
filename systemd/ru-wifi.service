@@ -1,0 +1,13 @@
+[Unit]
+Description=RU-WiFi captive portal helper
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=ru-wifi service
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

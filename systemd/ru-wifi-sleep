@@ -1,0 +1,8 @@
+#!/bin/sh
+# Trigger a quick login check after resume.
+
+case "$1" in
+    post)
+        /usr/bin/ru-wifi login
+        ;;
+esac
