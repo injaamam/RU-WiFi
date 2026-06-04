@@ -6,7 +6,6 @@ from pathlib import Path
 import configparser
 import os
 import stat
-from typing import Tuple
 
 import keyring
 from keyring.errors import KeyringError
@@ -64,7 +63,7 @@ def load_password_file(path: Path) -> str | None:
     return parser.get("credentials", "password", fallback=None)
 
 
-def choose_store(store: str, username: str, password: str, file_path: Path) -> Tuple[str, str | None]:
+def choose_store(store: str, username: str, password: str, file_path: Path) -> tuple[str, str | None]:
     """Persist the password and return the store type used."""
 
     if store == "file":
