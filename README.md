@@ -12,33 +12,44 @@ RU-WiFi is a small CLI tool that keeps your RU captive portal session alive. It 
 
 ## Install
 
+1. Clone and install:
+
 ```bash
-python -m pip install .
+git clone https://github.com/injaamam/RU-WiFi.git
+cd RU-WiFi
+python -m pip install --user .
 ```
 
-## Quick start
+2. Make sure `~/.local/bin` is on your `PATH` (so `ru-wifi` is found):
 
-1. Save credentials:
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+## Setup (first run)
+
+Save your RU portal credentials:
 
 ```bash
 ru-wifi setup
 ```
 
-2. Check status manually:
+For system-wide config:
+
+```bash
+sudo ru-wifi setup --system
+```
+
+Quick checks:
 
 ```bash
 ru-wifi status
-```
-
-3. Run one login attempt:
-
-```bash
 ru-wifi login
 ```
 
 ## Background service (systemd)
 
-Copy the unit file and enable it:
+User service:
 
 ```bash
 mkdir -p ~/.config/systemd/user
@@ -47,9 +58,10 @@ systemctl --user daemon-reload
 systemctl --user enable --now ru-wifi.service
 ```
 
-For a system-wide service, copy the same unit to `/etc/systemd/system/` and run:
+System-wide service:
 
 ```bash
+sudo cp systemd/ru-wifi.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now ru-wifi.service
 ```
