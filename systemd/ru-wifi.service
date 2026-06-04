@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=ru-wifi service
+ExecStart=%h/.local/bin/ru-wifi service
 Restart=on-failure
 RestartSec=5
 
