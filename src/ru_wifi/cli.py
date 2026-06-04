@@ -155,7 +155,7 @@ def handle_service(args: argparse.Namespace) -> int:
         config.behavior.check_interval_seconds = args.interval
     logger = setup_logging(config.log_file)
     try:
-        run_service(config, logger, args.interval)
+        run_service(config, logger)
     except CredentialError as exc:
         logger.error("%s", exc)
         return 2
