@@ -51,8 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     setup_parser.add_argument("--log-file", help="Log file path (optional).")
     setup_parser.add_argument("--username", help="Username to save (skip prompt).")
 
-    login_parser = subparsers.add_parser("login", help="Check and login if needed.")
-    login_parser.add_argument("--interval", type=int, help="Override interval for one run.")
+    subparsers.add_parser("login", help="Check and login if needed.")
 
     subparsers.add_parser("status", help="Report login status.")
 
@@ -138,8 +137,6 @@ def handle_status(args: argparse.Namespace) -> int:
 
 def handle_login(args: argparse.Namespace) -> int:
     config, _ = resolve_config(args)
-    if args.interval:
-        config.behavior.check_interval_seconds = args.interval
     logger = setup_logging(config.log_file)
     try:
         success = attempt_login_if_needed(config, logger)
@@ -151,11 +148,9 @@ def handle_login(args: argparse.Namespace) -> int:
 
 def handle_service(args: argparse.Namespace) -> int:
     config, _ = resolve_config(args)
-    if args.interval:
-        config.behavior.check_interval_seconds = args.interval
     logger = setup_logging(config.log_file)
     try:
-        run_service(config, logger)
+        run_service(config, logger, args.interval)
     except CredentialError as exc:
         logger.error("%s", exc)
         return 2
